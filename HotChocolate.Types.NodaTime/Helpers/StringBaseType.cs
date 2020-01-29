@@ -1,19 +1,20 @@
 using System;
-using System.Globalization;
 using HotChocolate.Language;
-using NodaTime;
-using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class DurationType : ScalarType
+    public abstract class StringBaseType<TBase> : ScalarType
     {
-        public DurationType()
-            : base("Duration")
+        public StringBaseType(string name)
+            : base(name)
         {
         }
 
-        public override Type ClrType { get; } = typeof(Duration);
+        protected abstract string DoFormat(TBase baseValue);
+
+        protected abstract TBase DoParse(string str);
+
+        public override Type ClrType { get; } = typeof(TBase);
 
         public override bool IsInstanceOfType(IValueNode? literal)
         {
@@ -35,7 +36,14 @@ namespace HotChocolate.Types.NodaTime
 
             if (literal is StringValueNode stringLiteral)
             {
-                return DoParse(stringLiteral.Value);
+                try
+                {
+                    return DoParse(stringLiteral.Value);
+                }
+                catch (Exception e)
+                {
+                    throw new ScalarSerializationException("Unable to deserialize string to Duration", e);
+                }
             }
 
             if (literal is NullValueNode)
@@ -44,7 +52,7 @@ namespace HotChocolate.Types.NodaTime
             }
 
             throw new ScalarSerializationException(
-                "The Duration type can only parse string literals.");
+                $"The {this.Name} type can only parse string literals.");
         }
 
         public override IValueNode ParseValue(object? value)
@@ -54,15 +62,19 @@ namespace HotChocolate.Types.NodaTime
                 return new NullValueNode(null);
             }
 
-            if (value is Duration duration)
+            if (value is TBase baseValue)
             {
-                var str = DoFormat(duration);
-                return new StringValueNode(null, str, false);
+                try
+                {
+                    var str = DoFormat(baseValue);
+                    return new StringValueNode(null, str, false);
+                }
+                catch (Exception) { }
             }
 
             throw new ScalarSerializationException(
                 "The specified value has to be a string in order " +
-                "to be parsed by the Duration type.");
+                $"to be parsed by the {this.Name} type.");
         }
 
         public override object? Serialize(object? value)
@@ -72,13 +84,17 @@ namespace HotChocolate.Types.NodaTime
                 return null;
             }
 
-            if (value is Duration duration)
+            if (value is TBase baseValue)
             {
-                return DoFormat(duration);
+                try
+                {
+                    return DoFormat(baseValue);
+                }
+                catch (Exception) { }
             }
 
             throw new ScalarSerializationException(
-                "The specified value cannot be serialized by the Duration type.");
+                $"The specified value cannot be serialized by the {this.Name} type.");
         }
 
         public override bool TryDeserialize(object? serialized, out object? value)
@@ -91,33 +107,18 @@ namespace HotChocolate.Types.NodaTime
 
             if (serialized is string str)
             {
-                value = DoParse(str);
-                return true;
+                try
+                {
+                    value = DoParse(str);
+                    return true;
+                }
+                catch (Exception)
+                {
+                }
             }
 
             value = null;
             return false;
-        }
-
-        private static string DoFormat(Duration duration)
-        {
-            return DurationPattern.Roundtrip
-                    .WithCulture(CultureInfo.InvariantCulture)
-                    .Format(duration);
-        }
-
-        private static Duration DoParse(string str)
-        {
-            try
-            {
-                return DurationPattern.Roundtrip
-                    .WithCulture(CultureInfo.InvariantCulture)
-                    .Parse(str).GetValueOrThrow();
-            }
-            catch (Exception e)
-            {
-                throw new ScalarSerializationException("Unable to deserialize string to Duration", e);
-            }
         }
     }
 }

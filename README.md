@@ -14,3 +14,19 @@ SchemaBuilder.New()
     .AddNodaTime()
     .Create();
 ```
+
+## Roadmap
+
+- [ ] DateTimeZone
+- [x] Duration
+- [ ] Instant
+- [ ] IsoDayOfWeek
+- [ ] LocalDate
+- [ ] LocalDateTime
+- [ ] LocalTime
+- [ ] Offset
+- [ ] OffsetDate
+- [ ] OffsetDateTime
+- [ ] OffsetTime
+- [ ] Period
+- [ ] ZonedDateTime
