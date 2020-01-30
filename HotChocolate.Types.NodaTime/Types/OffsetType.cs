@@ -4,20 +4,20 @@ using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class DurationType : StringBaseType<Duration>
+    public class OffsetType : StringBaseType<Offset>
     {
-        public DurationType()
-            : base("Duration")
+        public OffsetType()
+            : base("Offset")
         {
         }
 
-        protected override string DoFormat(Duration val)
-            => DurationPattern.Roundtrip
+        protected override string DoFormat(Offset val)
+            => OffsetPattern.GeneralInvariantWithZ
                 .WithCulture(CultureInfo.InvariantCulture)
                 .Format(val);
 
-        protected override Duration DoParse(string str)
-            => DurationPattern.Roundtrip
+        protected override Offset DoParse(string str)
+            => OffsetPattern.GeneralInvariantWithZ
                 .WithCulture(CultureInfo.InvariantCulture)
                 .Parse(str).GetValueOrThrow();
     }
