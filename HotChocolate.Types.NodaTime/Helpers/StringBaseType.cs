@@ -42,7 +42,8 @@ namespace HotChocolate.Types.NodaTime
                 }
                 catch (Exception e)
                 {
-                    throw new ScalarSerializationException("Unable to deserialize string to Duration", e);
+                    throw new ScalarSerializationException(
+                        $"Unable to deserialize string to {this.Name}", e);
                 }
             }
 
