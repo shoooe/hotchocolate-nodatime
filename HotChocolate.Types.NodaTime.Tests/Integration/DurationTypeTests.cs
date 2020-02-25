@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using HotChocolate.Execution;
 using HotChocolate.Types.NodaTime.Extensions;
 using NodaTime;
@@ -144,7 +145,8 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
             Assert.DoesNotContain("test", queryResult.Data);
-            Assert.NotEmpty(queryResult.Errors);
+            Assert.Equal(1, queryResult.Errors.Count);
+            Assert.Equal("EXEC_INVALID_TYPE", queryResult.Errors.First().Code);
         }
 
         [Fact]
@@ -157,7 +159,8 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
             Assert.DoesNotContain("test", queryResult.Data);
-            Assert.NotEmpty(queryResult.Errors);
+            Assert.Equal(1, queryResult.Errors.Count);
+            Assert.Equal("EXEC_INVALID_TYPE", queryResult.Errors.First().Code);
         }
 
         [Fact]
@@ -213,7 +216,8 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
             Assert.DoesNotContain("test", queryResult.Data);
-            Assert.NotEmpty(queryResult.Errors);
+            Assert.Equal(1, queryResult.Errors.Count);
+            Assert.Equal("arg", queryResult.Errors.First().Extensions["argument"].ToString());
         }
 
         [Fact]
@@ -225,7 +229,8 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
             Assert.DoesNotContain("test", queryResult.Data);
-            Assert.NotEmpty(queryResult.Errors);
+            Assert.Equal(1, queryResult.Errors.Count);
+            Assert.Equal("arg", queryResult.Errors.First().Extensions["argument"].ToString());
         }
     }
 }

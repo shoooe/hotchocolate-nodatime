@@ -70,7 +70,11 @@ namespace HotChocolate.Types.NodaTime
                     var integer = DoFormat(baseValue);
                     return new IntValueNode(integer);
                 }
-                catch (Exception) { }
+                catch (Exception e)
+                {
+                    throw new ScalarSerializationException(
+                        $"Unable to deserialize integer to {this.Name}", e);
+                }
             }
 
             throw new ScalarSerializationException(
@@ -91,7 +95,11 @@ namespace HotChocolate.Types.NodaTime
                 {
                     return DoFormat(baseValue);
                 }
-                catch (Exception) { }
+                catch (Exception e)
+                {
+                    throw new ScalarSerializationException(
+                        $"The specified value cannot be serialized by the {this.Name} type.", e);
+                }
             }
 
             throw new ScalarSerializationException(
