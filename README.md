@@ -19,7 +19,7 @@ SchemaBuilder.New()
 
 ## DateTimeZone
 
-Format: One Zone ID of [these](https://nodatime.org/TimeZones)
+Format: One Zone ID from [these](https://nodatime.org/TimeZones)
 Literal example: `"Europe/Rome"`
 
 References:
@@ -28,12 +28,26 @@ References:
 
 ## Duration
 
-Format: `-?(D:hh|H):mm:ss(.fff)?`
-Literal example: `"-123:07:53:10.019`
+Literal example: `"-123:07:53:10.019"`
 
 References:
- - [NodaTime.DateTimeZone](https://nodatime.org/2.4.x/api/NodaTime.Duration.html)
+ - [NodaTime.Duration](https://nodatime.org/2.4.x/api/NodaTime.Duration.html)
  - [Patterns for Duration values](https://nodatime.org/2.4.x/userguide/duration-patterns)
+
+## Instant
+
+Literal example: `"2020-02-20T17:42:59Z"`
+
+References:
+ - [NodaTime.Instant](https://nodatime.org/2.4.x/api/NodaTime.Instant.html)
+ - [Patterns for Instant values](https://nodatime.org/2.4.x/userguide/instant-patterns)
+
+## IsoDayOfWeek
+
+Literal example: `7`
+
+References:
+ - [NodaTime.IsoDayOfWeek](https://nodatime.org/2.4.x/api/NodaTime.IsoDayOfWeek.html)
 
 # Roadmap
 
@@ -55,9 +69,9 @@ References:
 
 ## Tests
 
-- [ ] DateTimeZone
+- [x] DateTimeZone
 - [x] Duration
-- [ ] Instant
+- [x] Instant
 - [x] IsoDayOfWeek
 - [ ] LocalDate
 - [ ] LocalDateTime
@@ -71,8 +85,8 @@ References:
 
 ## Documentation
 
-- [ ] DateTimeZone
-- [ ] Duration
+- [x] DateTimeZone
+- [x] Duration
 - [x] Instant
 - [x] IsoDayOfWeek
 - [ ] LocalDate
