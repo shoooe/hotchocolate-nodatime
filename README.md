@@ -50,6 +50,31 @@ Literal example: `7`
 References:
  - [NodaTime.IsoDayOfWeek](https://nodatime.org/2.4.x/api/NodaTime.IsoDayOfWeek.html)
 
+## LocalDate
+
+Literal example: `2020-12-25`
+
+References:
+ - [NodaTime.LocalDate](https://nodatime.org/2.4.x/api/NodaTime.LocalDate.html)
+ - [Patterns for LocalDate values](https://nodatime.org/2.4.x/userguide/localdate-patterns)
+
+## LocalDateTime
+
+Literal example: `2020-12-25T13:46:78`
+
+References:
+ - [NodaTime.LocalDateTime](https://nodatime.org/2.4.x/api/NodaTime.LocalDateTime.html)
+ - [Patterns for LocalDateTime values](https://nodatime.org/2.4.x/userguide/localdatetime-patterns)
+
+## LocalDateTime
+
+Literal example: `12:42:13`
+Literal example: `12:42:13.03101`
+
+References:
+ - [NodaTime.LocalTime](https://nodatime.org/2.4.x/api/NodaTime.LocalTime.html)
+ - [Patterns for LocalTime values](https://nodatime.org/2.4.x/userguide/localtime-patterns)
+
 # Roadmap
 
 ## Implementation
@@ -74,9 +99,9 @@ References:
 - [x] Duration
 - [x] Instant
 - [x] IsoDayOfWeek
-- [ ] LocalDate
-- [ ] LocalDateTime
-- [ ] LocalTime
+- [x] LocalDate
+- [x] LocalDateTime
+- [x] LocalTime
 - [ ] Offset
 - [ ] OffsetDate
 - [ ] OffsetDateTime
@@ -90,9 +115,9 @@ References:
 - [x] Duration
 - [x] Instant
 - [x] IsoDayOfWeek
-- [ ] LocalDate
-- [ ] LocalDateTime
-- [ ] LocalTime
+- [x] LocalDate
+- [x] LocalDateTime
+- [x] LocalTime
 - [ ] Offset
 - [ ] OffsetDate
 - [ ] OffsetDateTime
