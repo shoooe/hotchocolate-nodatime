@@ -86,6 +86,16 @@ References:
  - [NodaTime.OffsetDateTime](https://nodatime.org/2.4.x/api/NodaTime.OffsetDateTime.html)
  - [Patterns for OffsetDateTime values](https://nodatime.org/2.4.x/userguide/offsetdatetime-patterns)
 
+## OffsetDate
+
+Literal examples: 
+ - `"2020-12-25+02"`
+ - `"2020-12-25+02:35"`
+
+References:
+ - [NodaTime.OffsetDate](https://nodatime.org/2.4.x/api/NodaTime.OffsetDate.html)
+ - [Patterns for OffsetDate values](https://nodatime.org/2.4.x/userguide/offsetdate-patterns)
+
 # Roadmap
 
 ## Implementation
@@ -114,7 +124,7 @@ References:
 - [x] LocalDateTime
 - [x] LocalTime
 - [ ] Offset
-- [ ] OffsetDate
+- [x] OffsetDate
 - [x] OffsetDateTime
 - [ ] OffsetTime
 - [ ] Period
@@ -130,7 +140,7 @@ References:
 - [x] LocalDateTime
 - [x] LocalTime
 - [ ] Offset
-- [ ] OffsetDate
+- [x] OffsetDate
 - [x] OffsetDateTime
 - [ ] OffsetTime
 - [ ] Period
