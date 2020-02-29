@@ -116,6 +116,17 @@ References:
  - [NodaTime.Offset](https://nodatime.org/2.4.x/api/NodaTime.Offset.html)
  - [Patterns for Offset values](https://nodatime.org/2.4.x/userguide/offset-patterns)
 
+## Period
+
+Literal examples: 
+ - `"P-3W3D"`
+ - `"PT139t"`
+ - `"P-3W3DT139t"`
+
+References:
+ - [NodaTime.Period](https://nodatime.org/2.4.x/api/NodaTime.Period.html)
+ - [Patterns for Period values](https://nodatime.org/2.4.x/userguide/period-patterns)
+
 # Roadmap
 
 ## Implementation
@@ -147,7 +158,7 @@ References:
 - [x] OffsetDate
 - [x] OffsetDateTime
 - [x] OffsetTime
-- [ ] Period
+- [x] Period
 - [ ] ZonedDateTime
 
 ## Documentation
@@ -163,5 +174,5 @@ References:
 - [x] OffsetDate
 - [x] OffsetDateTime
 - [x] OffsetTime
-- [ ] Period
+- [x] Period
 - [ ] ZonedDateTime
