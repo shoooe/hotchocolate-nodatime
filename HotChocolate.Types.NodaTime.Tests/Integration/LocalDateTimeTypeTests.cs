@@ -37,7 +37,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         }
 
         [Fact]
-        public void QueryReturnsUtc()
+        public void QueryReturns()
         {
             var result = testExecutor.Execute("query { test: one }");
             var queryResult = result as IReadOnlyQueryResult;
