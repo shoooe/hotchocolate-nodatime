@@ -52,7 +52,7 @@ References:
 
 ## LocalDate
 
-Literal example: `2020-12-25`
+Literal example: `"2020-12-25"`
 
 References:
  - [NodaTime.LocalDate](https://nodatime.org/2.4.x/api/NodaTime.LocalDate.html)
@@ -60,7 +60,7 @@ References:
 
 ## LocalDateTime
 
-Literal example: `2020-12-25T13:46:78`
+Literal example: `"2020-12-25T13:46:78"`
 
 References:
  - [NodaTime.LocalDateTime](https://nodatime.org/2.4.x/api/NodaTime.LocalDateTime.html)
@@ -68,8 +68,8 @@ References:
 
 ## LocalDateTime
 
-Literal example: `12:42:13`
-Literal example: `12:42:13.03101`
+Literal example: `"12:42:13"`
+Literal example: `"12:42:13.03101"`
 
 References:
  - [NodaTime.LocalTime](https://nodatime.org/2.4.x/api/NodaTime.LocalTime.html)
