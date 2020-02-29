@@ -96,6 +96,16 @@ References:
  - [NodaTime.OffsetDate](https://nodatime.org/2.4.x/api/NodaTime.OffsetDate.html)
  - [Patterns for OffsetDate values](https://nodatime.org/2.4.x/userguide/offsetdate-patterns)
 
+## OffsetTime
+
+Literal examples: 
+ - `"13:46:78+02"`
+ - `"13:46:78+02:35"`
+
+References:
+ - [NodaTime.OffsetTime](https://nodatime.org/2.4.x/api/NodaTime.OffsetTime.html)
+ - [Patterns for OffsetTime values](https://nodatime.org/2.4.x/userguide/offsettime-patterns)
+
 # Roadmap
 
 ## Implementation
@@ -126,7 +136,7 @@ References:
 - [ ] Offset
 - [x] OffsetDate
 - [x] OffsetDateTime
-- [ ] OffsetTime
+- [x] OffsetTime
 - [ ] Period
 - [ ] ZonedDateTime
 
@@ -142,6 +152,6 @@ References:
 - [ ] Offset
 - [x] OffsetDate
 - [x] OffsetDateTime
-- [ ] OffsetTime
+- [x] OffsetTime
 - [ ] Period
 - [ ] ZonedDateTime
