@@ -127,52 +127,16 @@ References:
  - [NodaTime.Period](https://nodatime.org/2.4.x/api/NodaTime.Period.html)
  - [Patterns for Period values](https://nodatime.org/2.4.x/userguide/period-patterns)
 
-# Roadmap
+## ZonedDateTime
 
-## Implementation
+*There's nothing close to a standard for timezoned date-times. Therefore this library chooses to follow the order of the `ZonedDateTime` constructor and define a format with a `LocalDateTime` pattern followed by a timezone ID followed by an offset.
+Feel free to override this behavior.*
 
-- [x] DateTimeZone
-- [x] Duration
-- [x] Instant
-- [x] IsoDayOfWeek
-- [x] LocalDate
-- [x] LocalDateTime
-- [x] LocalTime
-- [x] Offset
-- [x] OffsetDate
-- [x] OffsetDateTime
-- [x] OffsetTime
-- [x] Period
-- [x] ZonedDateTime
+Literal examples: 
+ - `"2020-12-31T18:30:13 UTC +00"`
+ - `"2020-12-31T19:40:13 Europe/Rome +01"`
+ - `"2020-12-31T19:40:13 Asia/Kathmandu +05:45"`
 
-## Tests
-
-- [x] DateTimeZone
-- [x] Duration
-- [x] Instant
-- [x] IsoDayOfWeek
-- [x] LocalDate
-- [x] LocalDateTime
-- [x] LocalTime
-- [x] Offset
-- [x] OffsetDate
-- [x] OffsetDateTime
-- [x] OffsetTime
-- [x] Period
-- [ ] ZonedDateTime
-
-## Documentation
-
-- [x] DateTimeZone
-- [x] Duration
-- [x] Instant
-- [x] IsoDayOfWeek
-- [x] LocalDate
-- [x] LocalDateTime
-- [x] LocalTime
-- [x] Offset
-- [x] OffsetDate
-- [x] OffsetDateTime
-- [x] OffsetTime
-- [x] Period
-- [ ] ZonedDateTime
+References:
+ - [NodaTime.Period](https://nodatime.org/2.4.x/api/NodaTime.ZonedDateTime.html)
+ - [Patterns for Period values](https://nodatime.org/2.4.x/userguide/zoneddatetime-patterns)

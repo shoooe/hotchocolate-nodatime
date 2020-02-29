@@ -16,13 +16,13 @@ namespace HotChocolate.Types.NodaTime
         }
 
         protected override string DoFormat(ZonedDateTime val)
-            => ZonedDateTimePattern.ExtendedFormatOnlyIso
-                .WithCulture(CultureInfo.InvariantCulture)
+            => ZonedDateTimePattern
+                .CreateWithInvariantCulture("uuuu'-'MM'-'dd'T'HH':'mm':'ss' 'z' 'o<g>", DateTimeZoneProviders.Tzdb)
                 .Format(val);
 
         protected override ZonedDateTime DoParse(string str)
-            => ZonedDateTimePattern.ExtendedFormatOnlyIso
-                .WithCulture(CultureInfo.InvariantCulture)
+            => ZonedDateTimePattern
+                .CreateWithInvariantCulture("uuuu'-'MM'-'dd'T'HH':'mm':'ss' 'z' 'o<g>", DateTimeZoneProviders.Tzdb)
                 .Parse(str).GetValueOrThrow();
     }
 }
