@@ -91,7 +91,7 @@ namespace HotChocolate.Types.NodaTime.Tests
             var queryResult = result as IReadOnlyQueryResult;
             Assert.DoesNotContain("test", queryResult.Data);
             Assert.Equal(1, queryResult.Errors.Count);
-            Assert.Equal(null, queryResult.Errors.First().Code);
+            Assert.Null(queryResult.Errors.First().Code);
             Assert.Equal("Unable to deserialize string to Instant", queryResult.Errors.First().Message);
         }
     }
