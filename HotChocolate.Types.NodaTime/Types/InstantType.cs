@@ -9,12 +9,7 @@ namespace HotChocolate.Types.NodaTime
         public InstantType()
             : base("Instant")
         {
-            Description =
-                "An instant is defined by an integral number of 'ticks' since the Unix epoch " +
-                "(typically described as January 1st 1970, midnight, UTC, ISO calendar), " +
-                "where a tick is equal to 100 nanoseconds.\n" +
-                "An Instant has no concept of a particular time zone or calendar: it simply " +
-                "represents a point in time that can be globally agreed-upon.";
+            Description = "Represents an instant on the global timeline, with nanosecond resolution.";
         }
 
         protected override string DoFormat(Instant val)

@@ -9,6 +9,7 @@ namespace HotChocolate.Types.NodaTime
         public LocalDateTimeType()
             : base("LocalDateTime")
         {
+            Description = "A date and time in a particular calendar system.";
         }
 
         protected override string DoFormat(LocalDateTime val)

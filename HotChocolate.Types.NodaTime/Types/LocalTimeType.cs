@@ -9,6 +9,7 @@ namespace HotChocolate.Types.NodaTime
         public LocalTimeType()
             : base("LocalTime")
         {
+            Description = "LocalTime is an immutable struct representing a time of day, with no reference to a particular calendar, time zone or date.";
         }
 
         protected override string DoFormat(LocalTime val)

@@ -9,6 +9,10 @@ namespace HotChocolate.Types.NodaTime
         public OffsetType()
             : base("Offset")
         {
+            Description =
+                "An offset from UTC in seconds.\n" +
+                "A positive value means that the local time is ahead of UTC (e.g. for Europe); " +
+                    "a negative value means that the local time is behind UTC (e.g. for America).";
         }
 
         protected override string DoFormat(Offset val)

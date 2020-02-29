@@ -9,6 +9,10 @@ namespace HotChocolate.Types.NodaTime
         public ZonedDateTimeType()
             : base("ZonedDateTime")
         {
+            Description =
+                "A LocalDateTime in a specific time zone and with a particular offset to " +
+                    "distinguish between otherwise-ambiguous instants.\n" +
+                "A ZonedDateTime is global, in that it maps to a single Instant.";
         }
 
         protected override string DoFormat(ZonedDateTime val)

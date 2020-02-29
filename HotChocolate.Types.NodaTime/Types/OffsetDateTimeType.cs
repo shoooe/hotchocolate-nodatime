@@ -9,6 +9,7 @@ namespace HotChocolate.Types.NodaTime
         public OffsetDateTimeType()
             : base("OffsetDateTime")
         {
+            Description = "A local date and time in a particular calendar system, combined with an offset from UTC.";
         }
 
         protected override string DoFormat(OffsetDateTime val)

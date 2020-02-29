@@ -10,6 +10,9 @@ namespace HotChocolate.Types.NodaTime
         public PeriodType()
             : base("Period")
         {
+            Description =
+                "Represents a period of time expressed in human chronological " +
+                    "terms: hours, days, weeks, months and so on.";
         }
 
         protected override string DoFormat(Period val)

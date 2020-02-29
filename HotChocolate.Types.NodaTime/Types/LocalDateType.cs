@@ -9,6 +9,10 @@ namespace HotChocolate.Types.NodaTime
         public LocalDateType()
             : base("LocalDate")
         {
+            Description =
+                "LocalDate is an immutable struct representing a date " +
+                    "within the calendar, with no reference to a particular " +
+                    "time zone or time of day.";
         }
 
         protected override string DoFormat(LocalDate val)

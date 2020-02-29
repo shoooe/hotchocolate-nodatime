@@ -9,6 +9,7 @@ namespace HotChocolate.Types.NodaTime
         public DurationType()
             : base("Duration")
         {
+            Description = "Represents a fixed (and calendar-independent) length of time.";
         }
 
         protected override string DoFormat(Duration val)
