@@ -106,6 +106,16 @@ References:
  - [NodaTime.OffsetTime](https://nodatime.org/2.4.x/api/NodaTime.OffsetTime.html)
  - [Patterns for OffsetTime values](https://nodatime.org/2.4.x/userguide/offsettime-patterns)
 
+## Offset
+
+Literal examples: 
+ - `"+02"`
+ - `"+02:35"`
+
+References:
+ - [NodaTime.Offset](https://nodatime.org/2.4.x/api/NodaTime.Offset.html)
+ - [Patterns for Offset values](https://nodatime.org/2.4.x/userguide/offset-patterns)
+
 # Roadmap
 
 ## Implementation
@@ -133,7 +143,7 @@ References:
 - [x] LocalDate
 - [x] LocalDateTime
 - [x] LocalTime
-- [ ] Offset
+- [x] Offset
 - [x] OffsetDate
 - [x] OffsetDateTime
 - [x] OffsetTime
@@ -149,7 +159,7 @@ References:
 - [x] LocalDate
 - [x] LocalDateTime
 - [x] LocalTime
-- [ ] Offset
+- [x] Offset
 - [x] OffsetDate
 - [x] OffsetDateTime
 - [x] OffsetTime
