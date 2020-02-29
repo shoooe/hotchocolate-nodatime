@@ -68,12 +68,23 @@ References:
 
 ## LocalDateTime
 
-Literal example: `"12:42:13"`
-Literal example: `"12:42:13.03101"`
+Literal examples: 
+ - `"12:42:13"`
+ - `"12:42:13.03101"`
 
 References:
  - [NodaTime.LocalTime](https://nodatime.org/2.4.x/api/NodaTime.LocalTime.html)
  - [Patterns for LocalTime values](https://nodatime.org/2.4.x/userguide/localtime-patterns)
+
+## OffsetDateTime
+
+Literal examples: 
+ - `"2020-12-25T13:46:78+02"`
+ - `"2020-12-25T13:46:78+02:35"`
+
+References:
+ - [NodaTime.OffsetDateTime](https://nodatime.org/2.4.x/api/NodaTime.OffsetDateTime.html)
+ - [Patterns for OffsetDateTime values](https://nodatime.org/2.4.x/userguide/offsetdatetime-patterns)
 
 # Roadmap
 
@@ -104,7 +115,7 @@ References:
 - [x] LocalTime
 - [ ] Offset
 - [ ] OffsetDate
-- [ ] OffsetDateTime
+- [x] OffsetDateTime
 - [ ] OffsetTime
 - [ ] Period
 - [ ] ZonedDateTime
@@ -120,7 +131,7 @@ References:
 - [x] LocalTime
 - [ ] Offset
 - [ ] OffsetDate
-- [ ] OffsetDateTime
+- [x] OffsetDateTime
 - [ ] OffsetTime
 - [ ] Period
 - [ ] ZonedDateTime
