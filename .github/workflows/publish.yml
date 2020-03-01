@@ -33,6 +33,6 @@ jobs:
         run: dotnet pack --configuration Release /p:PackageVersion=${{ steps.version.outputs.VERSION }} -o pkg
 
       - name: Publish nuget package
-        run: nuget push pkg/HotChocolate.Types.NodaTime.${{ steps.version.outputs.VERSION }}.nupkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+        run: dotnet nuget push ./pkg/HotChocolate.Types.NodaTime.${{ steps.version.outputs.VERSION }}.nupkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
         env:
           nuget_api_key: ${{ secrets.NUGET_API_KEY }}
