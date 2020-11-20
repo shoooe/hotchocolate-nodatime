@@ -44,7 +44,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: positiveWithDecimals }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("123:07:53:10.019", queryResult.Data["test"]);
+            Assert.Equal("123:07:53:10.019", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: negativeWithDecimals }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("-123:07:53:10.019", queryResult.Data["test"]);
+            Assert.Equal("-123:07:53:10.019", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: positiveWithoutDecimals }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("123:07:53:10", queryResult.Data["test"]);
+            Assert.Equal("123:07:53:10", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: positiveWithoutSeconds }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("123:07:53:00", queryResult.Data["test"]);
+            Assert.Equal("123:07:53:00", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -76,7 +76,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: positiveWithoutMinutes }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("123:07:00:00", queryResult.Data["test"]);
+            Assert.Equal("123:07:00:00", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -84,7 +84,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: positiveWithRoundtrip }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("124:02:01:10", queryResult.Data["test"]);
+            Assert.Equal("124:02:01:10", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", "09:22:01:00.019")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("9:22:11:00.019", queryResult.Data["test"]);
+            Assert.Equal("9:22:11:00.019", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -108,7 +108,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", "09:22:01:00")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("9:22:11:00", queryResult.Data["test"]);
+            Assert.Equal("9:22:11:00", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", "9:22:01:00")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("9:22:11:00", queryResult.Data["test"]);
+            Assert.Equal("9:22:11:00", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -132,7 +132,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", "-9:22:01:00")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("-9:21:51:00", queryResult.Data["test"]);
+            Assert.Equal("-9:21:51:00", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -144,7 +144,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", "+09:22:01:00")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.Equal(1, queryResult.Errors.Count);
             Assert.Equal("EXEC_INVALID_TYPE", queryResult.Errors.First().Code);
         }
@@ -158,7 +158,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", "9:26:01:00")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.Equal(1, queryResult.Errors.Count);
             Assert.Equal("EXEC_INVALID_TYPE", queryResult.Errors.First().Code);
         }
@@ -171,7 +171,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetQuery("mutation { test(arg: \"09:22:01:00.019\") }")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("9:22:11:00.019", queryResult.Data["test"]);
+            Assert.Equal("9:22:11:00.019", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -182,7 +182,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetQuery("mutation { test(arg: \"09:22:01:00\") }")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("9:22:11:00", queryResult.Data["test"]);
+            Assert.Equal("9:22:11:00", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -193,7 +193,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetQuery("mutation { test(arg: \"09:22:01:00\") }")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("9:22:11:00", queryResult.Data["test"]);
+            Assert.Equal("9:22:11:00", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -204,7 +204,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetQuery("mutation { test(arg: \"-9:22:01:00\") }")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("-9:21:51:00", queryResult.Data["test"]);
+            Assert.Equal("-9:21:51:00", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -215,7 +215,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetQuery("mutation { test(arg: \"+09:22:01:00\") }")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.Equal(1, queryResult.Errors.Count);
             Assert.Equal("arg", queryResult.Errors.First().Extensions["argument"].ToString());
         }
@@ -228,7 +228,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetQuery("mutation { test(arg: \"9:26:01:00\") }")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.Equal(1, queryResult.Errors.Count);
             Assert.Equal("arg", queryResult.Errors.First().Extensions["argument"].ToString());
         }

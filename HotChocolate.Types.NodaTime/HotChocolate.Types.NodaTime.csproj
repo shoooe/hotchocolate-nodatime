@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HotChocolate" Version="10.4.3" />
+    <PackageReference Include="HotChocolate" Version="10.5.2" />
     <PackageReference Include="NodaTime" Version="3.0.0" />
   </ItemGroup>
 

@@ -46,7 +46,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: monday }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal(1, queryResult.Data["test"]);
+            Assert.Equal(1, queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: sunday }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal(7, queryResult.Data["test"]);
+            Assert.Equal(7, queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: friday }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal(5, queryResult.Data["test"]);
+            Assert.Equal(5, queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -70,7 +70,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: none }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.NotEmpty(queryResult.Errors);
         }
 
@@ -83,7 +83,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", 1)
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal(2, queryResult.Data["test"]);
+            Assert.Equal(2, queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", 7)
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal(1, queryResult.Data["test"]);
+            Assert.Equal(1, queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -107,7 +107,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", 0)
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.Equal(1, queryResult.Errors.Count);
             Assert.Equal("EXEC_INVALID_TYPE", queryResult.Errors.First().Code);
         }
@@ -121,7 +121,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", 8)
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.Equal(1, queryResult.Errors.Count);
             Assert.Equal("EXEC_INVALID_TYPE", queryResult.Errors.First().Code);
         }
@@ -135,7 +135,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", -2)
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.Equal(1, queryResult.Errors.Count);
             Assert.Equal("EXEC_INVALID_TYPE", queryResult.Errors.First().Code);
         }

@@ -42,7 +42,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: utc }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("UTC", queryResult.Data["test"]);
+            Assert.Equal("UTC", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: rome }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("Europe/Rome", queryResult.Data["test"]);
+            Assert.Equal("Europe/Rome", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace HotChocolate.Types.NodaTime.Tests
         {
             var result = testExecutor.Execute("query { test: chihuahua }");
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("America/Chihuahua", queryResult.Data["test"]);
+            Assert.Equal("America/Chihuahua", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -70,7 +70,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", "Europe/Amsterdam")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("Europe/Amsterdam", queryResult.Data["test"]);
+            Assert.Equal("Europe/Amsterdam", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetVariableValue("arg", "Europe/Hamster")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.Equal(1, queryResult.Errors.Count);
             Assert.Equal("EXEC_INVALID_TYPE", queryResult.Errors.First().Code);
         }
@@ -95,7 +95,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetQuery("mutation { test(arg: \"Europe/Amsterdam\") }")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.Equal("Europe/Amsterdam", queryResult.Data["test"]);
+            Assert.Equal("Europe/Amsterdam", queryResult!.Data["test"]);
         }
 
         [Fact]
@@ -106,7 +106,7 @@ namespace HotChocolate.Types.NodaTime.Tests
                     .SetQuery("mutation { test(arg: \"Europe/Hamster\") }")
                     .Create());
             var queryResult = result as IReadOnlyQueryResult;
-            Assert.DoesNotContain("test", queryResult.Data);
+            Assert.DoesNotContain("test", queryResult!.Data);
             Assert.Equal(1, queryResult.Errors.Count);
             Assert.Null(queryResult.Errors.First().Code);
             Assert.Equal("Unable to deserialize string to DateTimeZone", queryResult.Errors.First().Message);
