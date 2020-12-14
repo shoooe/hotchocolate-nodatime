@@ -1,13 +1,14 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using HotChocolate.Types.NodaTime.Extensions;
 using NodaTime;
 using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class LocalDateType : StringBaseType<LocalDate>
+    public class LocalDateType : StringToStructBaseType<LocalDate>
     {
-        public LocalDateType()
-            : base("LocalDate")
+        public LocalDateType() : base("LocalDate")
         {
             Description =
                 "LocalDate is an immutable struct representing a date " +
@@ -15,14 +16,14 @@ namespace HotChocolate.Types.NodaTime
                     "time zone or time of day.";
         }
 
-        protected override string DoFormat(LocalDate val)
+        protected override string Serialize(LocalDate baseValue)
             => LocalDatePattern.Iso
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Format(val);
+                .Format(baseValue);
 
-        protected override LocalDate DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out LocalDate? output)
             => LocalDatePattern.Iso
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Parse(str).GetValueOrThrow();
+                .TryParse(str, out output);
     }
 }

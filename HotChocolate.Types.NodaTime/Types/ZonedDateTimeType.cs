@@ -1,11 +1,14 @@
-using System.Globalization;
+using System.Diagnostics.CodeAnalysis;
+using HotChocolate.Types.NodaTime.Extensions;
 using NodaTime;
 using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class ZonedDateTimeType : StringBaseType<ZonedDateTime>
+    public class ZonedDateTimeType : StringToStructBaseType<ZonedDateTime>
     {
+        private static string formatString = "uuuu'-'MM'-'dd'T'HH':'mm':'ss' 'z' 'o<g>";
+
         public ZonedDateTimeType()
             : base("ZonedDateTime")
         {
@@ -15,14 +18,14 @@ namespace HotChocolate.Types.NodaTime
                 "A ZonedDateTime is global, in that it maps to a single Instant.";
         }
 
-        protected override string DoFormat(ZonedDateTime val)
+        protected override string Serialize(ZonedDateTime baseValue)
             => ZonedDateTimePattern
-                .CreateWithInvariantCulture("uuuu'-'MM'-'dd'T'HH':'mm':'ss' 'z' 'o<g>", DateTimeZoneProviders.Tzdb)
-                .Format(val);
+                .CreateWithInvariantCulture(formatString, DateTimeZoneProviders.Tzdb)
+                .Format(baseValue);
 
-        protected override ZonedDateTime DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out ZonedDateTime? output)
             => ZonedDateTimePattern
-                .CreateWithInvariantCulture("uuuu'-'MM'-'dd'T'HH':'mm':'ss' 'z' 'o<g>", DateTimeZoneProviders.Tzdb)
-                .Parse(str).GetValueOrThrow();
+                .CreateWithInvariantCulture(formatString, DateTimeZoneProviders.Tzdb)
+                .TryParse(str, out output);
     }
 }

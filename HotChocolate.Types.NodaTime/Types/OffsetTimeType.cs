@@ -1,13 +1,14 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using HotChocolate.Types.NodaTime.Extensions;
 using NodaTime;
 using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class OffsetTimeType : StringBaseType<OffsetTime>
+    public class OffsetTimeType : StringToStructBaseType<OffsetTime>
     {
-        public OffsetTimeType()
-            : base("OffsetTime")
+        public OffsetTimeType() : base("OffsetTime")
         {
             Description =
                 "A combination of a LocalTime and an Offset, " +
@@ -15,14 +16,14 @@ namespace HotChocolate.Types.NodaTime
                     "but without any date information.";
         }
 
-        protected override string DoFormat(OffsetTime val)
+        protected override string Serialize(OffsetTime baseValue)
             => OffsetTimePattern.GeneralIso
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Format(val);
+                .Format(baseValue);
 
-        protected override OffsetTime DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out OffsetTime? output)
             => OffsetTimePattern.GeneralIso
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Parse(str).GetValueOrThrow();
+                .TryParse(str, out output);
     }
 }

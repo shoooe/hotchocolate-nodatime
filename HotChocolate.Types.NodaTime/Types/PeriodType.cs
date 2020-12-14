@@ -1,25 +1,25 @@
-
+using System.Diagnostics.CodeAnalysis;
+using HotChocolate.Types.NodaTime.Extensions;
 using NodaTime;
 using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class PeriodType : StringBaseType<Period>
+    public class PeriodType : StringToClassBaseType<Period>
     {
-        public PeriodType()
-            : base("Period")
+        public PeriodType() : base("Period")
         {
             Description =
                 "Represents a period of time expressed in human chronological " +
                     "terms: hours, days, weeks, months and so on.";
         }
 
-        protected override string DoFormat(Period val)
+        protected override string Serialize(Period baseValue)
             => PeriodPattern.Roundtrip
-                .Format(val);
+                .Format(baseValue);
 
-        protected override Period DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out Period? output)
             => PeriodPattern.Roundtrip
-                .Parse(str).GetValueOrThrow();
+                .TryParse(str, out output);
     }
 }

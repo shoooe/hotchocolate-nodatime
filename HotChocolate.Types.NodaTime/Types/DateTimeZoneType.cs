@@ -1,12 +1,11 @@
-using System;
+using System.Diagnostics.CodeAnalysis;
 using NodaTime;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class DateTimeZoneType : StringBaseType<DateTimeZone>
+    public class DateTimeZoneType : StringToClassBaseType<DateTimeZone>
     {
-        public DateTimeZoneType()
-            : base("DateTimeZone")
+        public DateTimeZoneType() : base("DateTimeZone")
         {
             Description =
                 "Represents a time zone - a mapping between UTC and local time.\n" +
@@ -14,15 +13,22 @@ namespace HotChocolate.Types.NodaTime
                     "to the offset from UTC at any particular instant.";
         }
 
-        protected override string DoFormat(DateTimeZone val)
+        protected override string Serialize(DateTimeZone val)
             => val.Id;
 
-        protected override DateTimeZone DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out DateTimeZone? output)
         {
             var result = DateTimeZoneProviders.Tzdb.GetZoneOrNull(str);
             if (result == null)
-                throw new Exception();
-            return result;
+            {
+                output = null;
+                return false;
+            }
+            else
+            {
+                output = result;
+                return true;
+            }
         }
     }
 }

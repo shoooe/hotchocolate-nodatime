@@ -1,25 +1,26 @@
 using System.Globalization;
 using NodaTime;
 using NodaTime.Text;
+using HotChocolate.Types.NodaTime.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class InstantType : StringBaseType<Instant>
+    public class InstantType : StringToStructBaseType<Instant>
     {
-        public InstantType()
-            : base("Instant")
+        public InstantType() : base("Instant")
         {
             Description = "Represents an instant on the global timeline, with nanosecond resolution.";
         }
 
-        protected override string DoFormat(Instant val)
+        protected override string Serialize(Instant val)
             => InstantPattern.ExtendedIso
                 .WithCulture(CultureInfo.InvariantCulture)
                 .Format(val);
 
-        protected override Instant DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out Instant? output)
             => InstantPattern.ExtendedIso
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Parse(str).GetValueOrThrow();
+                .TryParse(str, out output);
     }
 }

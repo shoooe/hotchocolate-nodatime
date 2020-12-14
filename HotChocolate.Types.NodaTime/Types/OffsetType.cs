@@ -1,13 +1,14 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using HotChocolate.Types.NodaTime.Extensions;
 using NodaTime;
 using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class OffsetType : StringBaseType<Offset>
+    public class OffsetType : StringToStructBaseType<Offset>
     {
-        public OffsetType()
-            : base("Offset")
+        public OffsetType() : base("Offset")
         {
             Description =
                 "An offset from UTC in seconds.\n" +
@@ -15,14 +16,14 @@ namespace HotChocolate.Types.NodaTime
                     "a negative value means that the local time is behind UTC (e.g. for America).";
         }
 
-        protected override string DoFormat(Offset val)
+        protected override string Serialize(Offset baseValue)
             => OffsetPattern.GeneralInvariantWithZ
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Format(val);
+                .Format(baseValue);
 
-        protected override Offset DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out Offset? output)
             => OffsetPattern.GeneralInvariantWithZ
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Parse(str).GetValueOrThrow();
+                .TryParse(str, out output);
     }
 }

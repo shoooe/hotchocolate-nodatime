@@ -1,25 +1,26 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using HotChocolate.Types.NodaTime.Extensions;
 using NodaTime;
 using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class LocalDateTimeType : StringBaseType<LocalDateTime>
+    public class LocalDateTimeType : StringToStructBaseType<LocalDateTime>
     {
-        public LocalDateTimeType()
-            : base("LocalDateTime")
+        public LocalDateTimeType() : base("LocalDateTime")
         {
             Description = "A date and time in a particular calendar system.";
         }
 
-        protected override string DoFormat(LocalDateTime val)
+        protected override string Serialize(LocalDateTime baseValue)
             => LocalDateTimePattern.ExtendedIso
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Format(val);
+                .Format(baseValue);
 
-        protected override LocalDateTime DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out LocalDateTime? output)
             => LocalDateTimePattern.ExtendedIso
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Parse(str).GetValueOrThrow();
+                .TryParse(str, out output);
     }
 }

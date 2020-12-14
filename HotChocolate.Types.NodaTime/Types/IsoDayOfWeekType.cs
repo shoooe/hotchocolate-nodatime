@@ -1,36 +1,39 @@
-using System;
+using System.Diagnostics.CodeAnalysis;
 using NodaTime;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class IsoDayOfWeekType : IntBaseType<IsoDayOfWeek>
+    public class IsoDayOfWeekType : IntToStructBaseType<IsoDayOfWeek>
     {
-        public IsoDayOfWeekType()
-            : base("IsoDayOfWeek")
+        public IsoDayOfWeekType() : base("IsoDayOfWeek")
         {
             Description =
                 "Equates the days of the week with their numerical value according to ISO-8601.\n" +
                 "Monday = 1, Tuesday = 2, Wednesday = 3, Thursday = 4, Friday = 5, Saturday = 6, Sunday = 7.";
         }
 
-        protected override int DoFormat(IsoDayOfWeek val)
+        protected override bool TrySerialize(IsoDayOfWeek baseValue, [NotNullWhen(true)] out int? output)
         {
-            // The following check is necessary because otherwise 0
-            // would be a valid value for `IsoDayOfWeek` and would be converted to
-            // `IsoDayOfWeek.None`.
-            if (val == IsoDayOfWeek.None)
-                throw new Exception("`IsoDayOfWeek.None` is not a valid return value for this type");
-            return (int)val;
+            if (baseValue == IsoDayOfWeek.None)
+            {
+                output = null;
+                return false;
+            }
+
+            output = (int)baseValue;
+            return true;
         }
 
-        protected override IsoDayOfWeek DoParse(int integer)
+        protected override bool TryDeserialize(int val, [NotNullWhen(true)] out IsoDayOfWeek? output)
         {
-            // The following check is necessary because otherwise 0
-            // would be a valid value for `IsoDayOfWeek` and would be converted to
-            // `IsoDayOfWeek.None`.
-            if (integer <= 0 || integer > 7)
-                throw new Exception("Integer should be within [1, 7]");
-            return (IsoDayOfWeek)integer;
+            if (val < 1 || val > 7)
+            {
+                output = null;
+                return false;
+            }
+
+            output = (IsoDayOfWeek)val;
+            return true;
         }
     }
 }

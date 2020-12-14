@@ -1,27 +1,28 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using HotChocolate.Types.NodaTime.Extensions;
 using NodaTime;
 using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class OffsetDateType : StringBaseType<OffsetDate>
+    public class OffsetDateType : StringToStructBaseType<OffsetDate>
     {
-        public OffsetDateType()
-            : base("OffsetDate")
+        public OffsetDateType() : base("OffsetDate")
         {
             Description =
                 "A combination of a LocalDate and an Offset, to represent a date " +
                     "at a specific offset from UTC but without any time-of-day information.";
         }
 
-        protected override string DoFormat(OffsetDate val)
+        protected override string Serialize(OffsetDate baseValue)
             => OffsetDatePattern.GeneralIso
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Format(val);
+                .Format(baseValue);
 
-        protected override OffsetDate DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out OffsetDate? output)
             => OffsetDatePattern.GeneralIso
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Parse(str).GetValueOrThrow();
+                .TryParse(str, out output);
     }
 }

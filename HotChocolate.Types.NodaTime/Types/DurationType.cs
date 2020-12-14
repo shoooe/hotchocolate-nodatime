@@ -1,25 +1,26 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using HotChocolate.Types.NodaTime.Extensions;
 using NodaTime;
 using NodaTime.Text;
 
 namespace HotChocolate.Types.NodaTime
 {
-    public class DurationType : StringBaseType<Duration>
+    public class DurationType : StringToStructBaseType<Duration>
     {
-        public DurationType()
-            : base("Duration")
+        public DurationType() : base("Duration")
         {
             Description = "Represents a fixed (and calendar-independent) length of time.";
         }
 
-        protected override string DoFormat(Duration val)
+        protected override string Serialize(Duration baseValue)
             => DurationPattern.Roundtrip
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Format(val);
+                .Format(baseValue);
 
-        protected override Duration DoParse(string str)
+        protected override bool TryDeserialize(string str, [NotNullWhen(true)] out Duration? output)
             => DurationPattern.Roundtrip
                 .WithCulture(CultureInfo.InvariantCulture)
-                .Parse(str).GetValueOrThrow();
+                .TryParse(str, out output);
     }
 }
