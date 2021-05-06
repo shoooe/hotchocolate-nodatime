@@ -6,7 +6,13 @@ Adds support for [NodaTime](https://github.com/nodatime/nodatime) types in [Hot 
 
 ## .NET Core
 
-Just call `AddNodaTime` on your schema builder like so:
+Install [the package](https://www.nuget.org/packages/HotChocolate.Types.NodaTime) from NuGet:
+
+```bash
+dotnet add package HotChocolate.Types.NodaTime
+```
+
+Call `AddNodaTime` on your schema builder like so:
 
 ```c#
 SchemaBuilder.New()
