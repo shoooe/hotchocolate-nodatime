@@ -1,3 +1,13 @@
+# ⚠️ Warning
+
+This repository has been absorbed into [Hot Chocolate](https://github.com/ChilliCream/hotchocolate).
+
+The corresponding Nuget package [HotChocolate.Types.NodaTime](https://www.nuget.org/packages/HotChocolate.Types.NodaTime) is now managed by [ChilliCream](https://www.nuget.org/profiles/ChilliCream).
+ 
+See [this PR](https://github.com/ChilliCream/hotchocolate/pull/3795/files) for reference.
+
+<hr>
+
 # Introduction
 
 Adds support for [NodaTime](https://github.com/nodatime/nodatime) types in [Hot Chocolate](https://github.com/ChilliCream/hotchocolate).
